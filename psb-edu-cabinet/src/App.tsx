@@ -1,9 +1,13 @@
 import { AppRoot, Panel, PanelHeader, SplitCol, SplitLayout, View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-import "./App.scss";
-import * as React from 'react';
-import { useAuth } from 'react-oidc-context';
 import { useEffect } from 'react';
+import { useAuth } from 'react-oidc-context';
+import { RouterProvider } from 'react-router-dom';
+import "./App.scss";
+import HeaderPart from './core/parts/HeaderPart/HeaderPart';
+import router from './routes';
+import * as React from 'react';
+
 
 function App() {
   const auth = useAuth();
@@ -19,11 +23,10 @@ function App() {
         <SplitCol autoSpaced>
           <View activePanel="main">
             <Panel id="main">
-              <PanelHeader>ARTERIA.university | CABINET</PanelHeader>
+              <PanelHeader><HeaderPart /></PanelHeader>
               <div className='router-container'>
-                huwoirld
-                {/*                 <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
- */}              </div>
+                <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
+              </div>
             </Panel>
           </View>
         </SplitCol>
