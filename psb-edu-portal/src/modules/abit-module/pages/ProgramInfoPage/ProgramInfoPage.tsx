@@ -1,7 +1,9 @@
-import { Button, Card, Div, Separator, Spinner, Title } from "@vkontakte/vkui";
+import { Button, ButtonGroup, Card, Div, Headline, Paragraph, Spinner, Text, Title } from "@vkontakte/vkui";
+import dayjs from 'dayjs';
 import React, { FC, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetProgramModelByIdQuery } from "../../../../core/store/api/program-models-api";
+import { BASIS_DATE_FORMAT } from "../../../../utils/date-format";
 import "./ProgramInfoPage.scss";
 
 const ProgramInfoPage: FC = () => {
@@ -45,28 +47,59 @@ const ProgramInfoPage: FC = () => {
 
     }
     function getProgramInfo() {
-        return (<>
-            <Card className="program-info-container">
-                <Div>
+        return (
+            programModelInfo && (<Card className="program-info-container">
+                <Div className="title-container">
                     <Title level="1">
                         {programModelInfo?.name}
                     </Title>
                 </Div>
-                <Separator />
-                <Div>
-                    tags
+
+                <Div className="description-container">
+                    <Text>{programModelInfo?.description}</Text>
                 </Div>
-                <Separator />
-                <Div>
-                    description
-                </Div>
-                <Separator />
-                <Div>
-                    buttons
-                </Div>
-                <Separator />
-            </Card>
-        </>)
+                <div className="bottom-container">
+                    <Div>
+                        <Paragraph className="program-card-text-block">
+                            <Headline level="1" weight="2" >
+                                Курсы стартуют:
+                            </Headline>
+                            <Headline level="1" weight="3" >
+                                {dayjs(programModelInfo.start).format(BASIS_DATE_FORMAT)}
+                            </Headline>
+                        </Paragraph>
+                        <Paragraph className="program-card-text-block">
+                            <Headline level="1" weight="2" >
+                                Длительность курсов:
+                            </Headline>
+                            <Headline level="1" weight="3" >
+                                {dayjs.duration(programModelInfo.duration).asMonths().toFixed()} месяцев
+                            </Headline>
+                        </Paragraph>
+
+                    </Div>
+                    <Div>
+                        <ButtonGroup mode="vertical" gap="m" align="right">
+                            <Button size="l" appearance="accent" >
+                                Подать заявку
+                            </Button>
+                            <Button size="l" appearance="accent" mode="secondary" onClick={() => goToProgramsListPage()}>
+                                Вернуться к списку всех программ
+                            </Button>
+                        </ButtonGroup>
+
+                    </Div>
+                </div >
+
+
+            </Card >
+            ))
+    }
+    /*  */
+    /* 4. Переход обратно на список всех программ  */
+    const navigate = useNavigate();
+    function goToProgramsListPage() {
+        navigate("/abit/programs")
     }
     const genPage = () => {
         if (isSuccessInfo) {
