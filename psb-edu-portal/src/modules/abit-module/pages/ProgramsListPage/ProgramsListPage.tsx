@@ -1,10 +1,16 @@
 import React, { FC } from "react";
 import "./ProgramsListPage.scss"
+import ProgramsListPart from "../../parts/ProgramsListPart/ProgramsListPart";
 const ProgramsListPage: FC = () => {
-    
+
     return (
         <div className='programs-list-page-body'>
-            programsList
+            <div className="toolbox">
+                Toolbox
+            </div>
+            <div className="programs-viewer">
+                <ProgramsListPart />
+            </div>
         </div >
     );
 };

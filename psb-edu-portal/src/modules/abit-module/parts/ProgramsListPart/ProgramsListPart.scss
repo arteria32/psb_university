@@ -1,0 +1,11 @@
+.programs-list-part-body {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 8px;
+    row-gap: 8px;
+    flex-wrap: wrap;
+}
