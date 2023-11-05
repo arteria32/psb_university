@@ -1,4 +1,4 @@
-import { AppRoot, Group, Panel, PanelHeader, SplitCol, SplitLayout, View } from '@vkontakte/vkui';
+import { AppRoot, Panel, PanelHeader, SplitCol, SplitLayout, View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import * as React from 'react';
 import { RouterProvider } from 'react-router-dom';
@@ -11,11 +11,8 @@ const App = () => {
                 <SplitCol autoSpaced>
                     <View activePanel="main">
                         <Panel id="main">
-                            <PanelHeader>VKUI</PanelHeader>
-                            <Group>
-                                <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
-
-                            </Group>
+                            <PanelHeader>ARTERIA.university</PanelHeader>
+                            <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
                         </Panel>
                     </View>
                 </SplitCol>
