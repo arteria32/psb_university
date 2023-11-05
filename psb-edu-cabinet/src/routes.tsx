@@ -29,6 +29,17 @@ const router = createBrowserRouter([
                 index: true,
                 element: <Home />,
             },
+            {
+                path: "applications",
+                async lazy() {
+                    const { ListPageApplicationsModule } = await import(
+                        "./modules/applications-module/applications-module"
+                    );
+                    return {
+                        Component: ListPageApplicationsModule,
+                    };
+                },
+            }
         ],
     },
 ]);

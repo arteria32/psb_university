@@ -25,7 +25,7 @@ const NavigationTemplatePage: FC<{ children: React.ReactNode }> = ({ children })
     }
     /*  */
     return (<div className="basis-page-container">
-        <Tabbar style={{ position: 'static', margin: '0 0 10px' }}>
+        <Tabbar  className="tabbar" >
             {NAVIGATION_BAR_CONFIG.map((item) => (
                 <TabbarItem key={item.id} selected={curRootPath.includes(item.url)} onClick={() => goToPage(item.url)} text={item.name} />
             ))}
