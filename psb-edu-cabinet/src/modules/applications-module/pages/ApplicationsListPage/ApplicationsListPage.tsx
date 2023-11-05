@@ -1,7 +1,8 @@
-import { Button, Card, Div, Spinner, Title } from "@vkontakte/vkui";
-import "./ApplicationsListPage.scss"
-import React, { FC } from "react";
+import { Button, Card, Div, Footer, List, Panel, Spinner, Title } from "@vkontakte/vkui";
+import React, { FC, useEffect, useState } from "react";
 import { useGetAllApplicationsQuery } from "../../../../core/store/api/applications-api";
+import "./ApplicationsListPage.scss";
+import { Application } from "../../../../types/application";
 
 const ApplicationsListPage: FC = () => {
     /* 1. Подключаем Api */
@@ -13,6 +14,11 @@ const ApplicationsListPage: FC = () => {
         refetch: refetchApplicationsList
 
     } = useGetAllApplicationsQuery(null)
+
+    const [appsList, setAppsList] = useState<Application[]>([])
+    useEffect(() => {
+        setAppsList(applicationsList || [])
+    }, [applicationsList])
     /* Рисуем контент */
     function getLoadingSpinner() {
         return (
@@ -40,7 +46,14 @@ const ApplicationsListPage: FC = () => {
 
     }
     function genApplicationsList() {
-        return (<div>apps{applicationsList?.length}</div>)
+        return (<Panel className="applications-list-container">
+            <List>
+
+            </List>
+            <Footer>Количество заявок: {appsList?.length}</Footer>
+
+
+        </Panel>)
     }
     function genPage() {
         if (isSuccessApplicationsList) {
