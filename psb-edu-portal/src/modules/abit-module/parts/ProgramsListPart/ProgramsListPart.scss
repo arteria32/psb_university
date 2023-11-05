@@ -8,4 +8,17 @@
     column-gap: 8px;
     row-gap: 8px;
     flex-wrap: wrap;
+
+    .center-message {
+        margin: auto;
+    }
+
+    .error-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        column-gap: 8px;
+        row-gap: 8px;
+    }
 }
