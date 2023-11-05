@@ -6,12 +6,15 @@ export const programModelsApi = createApi({
     reducerPath: 'programModelsApi',
     baseQuery: fetchBaseQuery({ baseUrl: environment.urlBackend }),
     endpoints: (builder) => ({
-        getAllProgramModels: builder.query<ProgramModel[], null>({
+        getAllProgramsModels: builder.query<ProgramModel[], null>({
             query: () => `ProgramModels`,
+        }),
+        getProgramModelById: builder.query<ProgramModel, number>({
+            query: (id) => `ProgramModels/${id}`,
         }),
     }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllProgramModelsQuery } = programModelsApi
+export const { useGetAllProgramsModelsQuery,useGetProgramModelByIdQuery} = programModelsApi

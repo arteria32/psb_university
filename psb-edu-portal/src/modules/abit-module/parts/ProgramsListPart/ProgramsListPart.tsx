@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Card, Div, Headline, Paragraph, Separator, Spinner, Text, Title } from "@vkontakte/vkui";
 import React, { FC, useEffect, useState } from "react";
-import { useGetAllProgramModelsQuery } from "../../../../core/store/api/program-models-api";
+import { useGetAllProgramsModelsQuery } from "../../../../core/store/api/program-models-api";
 import { ProgramModel } from "../../../../types/program-model";
 import "./ProgramsListPart.scss";
 import dayjs from 'dayjs'
@@ -16,7 +16,7 @@ const ProgramsListPart: FC = () => {
         isLoading: isLoadingProgramsList,
         refetch: refetchProgramList
 
-    } = useGetAllProgramModelsQuery(null)
+    } = useGetAllProgramsModelsQuery(null)
     /* Заполнение и фильтрация списка программ */
     const [curProgramsList, setCurProgramsList] = useState<ProgramModel[]>([])
 
@@ -110,7 +110,7 @@ const ProgramsListPart: FC = () => {
 
     }
     function genPage() {
-        if (true) {
+        if (isSuccessProgramsList) {
             return genProgramList()
         }
         else if (isErrorProgramsList) {

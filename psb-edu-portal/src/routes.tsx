@@ -58,6 +58,17 @@ const router = createBrowserRouter([
                     };
                 },
             },
+            {
+                path: "program/:id",
+                async lazy() {
+                    const { ProgramInfoPageAbitModule } = await import(
+                        "./modules/abit-module/abit-module"
+                    );
+                    return {
+                        Component: ProgramInfoPageAbitModule,
+                    };
+                },
+            },
 
         ],
     },
