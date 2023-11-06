@@ -5,8 +5,6 @@ import { Provider } from 'react-redux'
 import App from './App'
 import { store } from './core/store/store'
 import './index.scss'
-import { keycloakSetting } from './keycloak'
-import { AuthProvider } from "react-oidc-context";
 
 
 const root = ReactDOM.createRoot(
@@ -14,7 +12,6 @@ const root = ReactDOM.createRoot(
 )
 root.render(
   <React.StrictMode>
-    <AuthProvider {...keycloakSetting} redirect_uri={window.location.href}>
       <Provider store={store}>
         <ConfigProvider>
           <AdaptivityProvider>
@@ -22,6 +19,5 @@ root.render(
           </AdaptivityProvider>
         </ConfigProvider>
       </Provider>
-    </AuthProvider>
   </React.StrictMode>
 )

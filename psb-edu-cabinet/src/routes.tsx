@@ -4,6 +4,8 @@ import {
     createBrowserRouter
 } from "react-router-dom";
 import NavigationTemplatePage from "./core/page/NavigationTemplatePage/NavigationTemplatePage";
+import LoginPage from "./core/page/LoginPage/LoginPage";
+import RegisterPage from "./core/page/RegisterPage/RegisterPage";
 
 function Home() {
     return (
@@ -18,7 +20,7 @@ const Layout = () => (<NavigationTemplatePage>
     <Outlet />
 </NavigationTemplatePage>)
 
-
+const AuthLayout = () => (<Outlet />)
 
 const router = createBrowserRouter([
     {
@@ -42,6 +44,20 @@ const router = createBrowserRouter([
             }
         ],
     },
+    {
+        path: "/auth",
+        element: <AuthLayout />,
+        children: [
+            {
+                index: true,
+                element: <LoginPage />,
+            },
+            {
+                path: "register",
+                element: <RegisterPage />,
+            },
+        ]
+    }
 ]);
 
 
