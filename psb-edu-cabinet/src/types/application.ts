@@ -3,5 +3,6 @@ export type Application = {
     date: string;
     programId: number;
     userId: number;
-    approved: boolean;
+    applicationStatus: string;
+    info: string;
 }

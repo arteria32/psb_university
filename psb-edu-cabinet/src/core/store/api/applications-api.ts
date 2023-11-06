@@ -10,9 +10,15 @@ export const applicationsApi = createApi({
         getAllApplications: builder.query<Application[], null>({
             query: () => `Applications`,
         }),
+        getApplicationsByUserId: builder.query<Application[], number>({
+            query: (userId) => ({
+                url: 'Applications/byUserId',
+                params: { userId },
+            }),
+        }),
     }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllApplicationsQuery} = applicationsApi
+export const { useGetAllApplicationsQuery } = applicationsApi

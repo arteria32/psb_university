@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from "react";
 import { useGetAllApplicationsQuery } from "../../../../core/store/api/applications-api";
 import "./ApplicationsListPage.scss";
 import { Application } from "../../../../types/application";
+import ApplicationCardComponent from "../../components/ApplicationCardComponent/ApplicationCardComponent";
 
 const ApplicationsListPage: FC = () => {
     /* 1. Подключаем Api */
@@ -17,7 +18,17 @@ const ApplicationsListPage: FC = () => {
 
     const [appsList, setAppsList] = useState<Application[]>([])
     useEffect(() => {
-        setAppsList(applicationsList || [])
+        console.log("appl", appsList)
+        setAppsList([
+            {
+                "id": 0,
+                "date": "2023-11-06T11:30:38.283Z",
+                "programId": 0,
+                "userId": 0,
+                "applicationStatus": "Checking",
+                "info": "string"
+            }
+        ])
     }, [applicationsList])
     /* Рисуем контент */
     function getLoadingSpinner() {
@@ -48,7 +59,7 @@ const ApplicationsListPage: FC = () => {
     function genApplicationsList() {
         return (<Panel className="applications-list-container">
             <List>
-
+                {appsList.map(item => (<ApplicationCardComponent application={item} key={item.id} />))}
             </List>
             <Footer>Количество заявок: {appsList?.length}</Footer>
 
