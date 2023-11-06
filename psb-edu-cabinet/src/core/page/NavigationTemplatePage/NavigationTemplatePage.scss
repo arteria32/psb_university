@@ -1,4 +1,11 @@
 .basis-page-container{
     width: 100%;
     height: 100%;
+    .vkuiTabbarItem{
+        .vkuiTabbarItem__in{
+            .vkuiTypography{
+                font-size: 15px;
+            }
+        }
+    }
 }

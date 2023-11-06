@@ -4,6 +4,9 @@ import {
     createBrowserRouter
 } from "react-router-dom";
 import NavigationTemplatePage from "./core/page/NavigationTemplatePage/NavigationTemplatePage";
+import UserPage from "./modules/profile-module/pages/UserPage/UserPage";
+import SchedulePage from "./modules/profile-module/pages/SchedulePage/SchedulePage";
+import TasksPage from "./modules/profile-module/pages/TasksPage/TasksPage";
 
 function Home() {
     return (
@@ -28,6 +31,36 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
+            },
+        ],
+    },
+    {
+        path: "/user",
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <UserPage />,
+            },
+        ],
+    },
+    {
+        path: "/schedule",
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <SchedulePage />,
+            },
+        ],
+    },
+    {
+        path: "/tasks",
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <TasksPage />,
             },
         ],
     },
