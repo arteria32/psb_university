@@ -1,6 +1,6 @@
 import { Button, Card, Div, FormItem, FormLayout, Input, Title } from "@vkontakte/vkui";
 import React, { FC } from "react";
-import { UserFullInfo, useLoginMutation } from "../../store/api/auth-api";
+import { UserFullInfo, useRegisterMutation } from "../../store/api/auth-api";
 import "./RegisterPage.scss";
 
 const RegisterPage: FC = () => {
@@ -9,8 +9,8 @@ const RegisterPage: FC = () => {
     const [name, setName] = React.useState('');
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [register, { isLoading: isLoadingLogin, isSuccess: isSuccessLogin, isError: isErrorLoading, error: errorLogin }] = useLoginMutation();
-    function onLoginClick() {
+    const [register, { isLoading: isLoadingLogin, isSuccess: isSuccessLogin, isError: isErrorLoading, error: errorLogin }] = useRegisterMutation();
+    function onRegisterClick() {
         const body: UserFullInfo = {
             email, password, name
         }
@@ -62,7 +62,7 @@ const RegisterPage: FC = () => {
                     mode="primary"
 
                     disabled={email.length == 0 || password.length == 0}
-                    onClick={() => onLoginClick()}
+                    onClick={() => onRegisterClick()}
                 >
                     Зарегестрироваться
                 </Button>
