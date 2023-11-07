@@ -1,9 +1,10 @@
-import { Button, Card, Div, Footer, List, Panel, Spinner, Title } from "@vkontakte/vkui";
+import { Button, Card, Div, Footer, Spinner, Title, SplitLayout, ModalCard, ModalRoot } from "@vkontakte/vkui";
 import React, { FC, useEffect, useState } from "react";
 import { useGetAllApplicationsQuery } from "../../../../core/store/api/applications-api";
-import "./ApplicationsListPage.scss";
 import { Application } from "../../../../types/application";
 import ApplicationCardComponent from "../../components/ApplicationCardComponent/ApplicationCardComponent";
+import "./ApplicationsListPage.scss";
+import ApplicationModalPart from "../../parts/ApplicationModalPart/ApplicationModalPart";
 
 const ApplicationsListPage: FC = () => {
     /* 1. Подключаем Api */
@@ -17,10 +18,32 @@ const ApplicationsListPage: FC = () => {
     } = useGetAllApplicationsQuery(null)
 
     const [appsList, setAppsList] = useState<Application[]>([])
+
     useEffect(() => {
         console.log("appl", appsList)
         setAppsList([
             {
+                "id": 0,
+                "date": "2023-11-06T11:30:38.283Z",
+                "programId": 0,
+                "userId": 0,
+                "applicationStatus": "Checking",
+                "info": "string"
+            }, {
+                "id": 0,
+                "date": "2023-11-06T11:30:38.283Z",
+                "programId": 0,
+                "userId": 0,
+                "applicationStatus": "Checking",
+                "info": "string"
+            }, {
+                "id": 0,
+                "date": "2023-11-06T11:30:38.283Z",
+                "programId": 0,
+                "userId": 0,
+                "applicationStatus": "Checking",
+                "info": "string"
+            }, {
                 "id": 0,
                 "date": "2023-11-06T11:30:38.283Z",
                 "programId": 0,
@@ -57,17 +80,19 @@ const ApplicationsListPage: FC = () => {
 
     }
     function genApplicationsList() {
-        return (<Panel className="applications-list-container">
-            <List>
-                {appsList.map(item => (<ApplicationCardComponent application={item} key={item.id} />))}
-            </List>
+        return (<Card className="applications-list-container">
+            {appsList.map(item => (
+                <div className="application-item" key={item.id} onClick={() => clickOnCard(item)}>
+                    <ApplicationCardComponent application={item} />
+                </div>
+            ))}
             <Footer>Количество заявок: {appsList?.length}</Footer>
 
 
-        </Panel>)
+        </Card>)
     }
     function genPage() {
-        if (isSuccessApplicationsList) {
+        if (isSuccessApplicationsList || true) {
             return genApplicationsList()
         }
         else if (isErrorApplicationsList) {
@@ -78,9 +103,24 @@ const ApplicationsListPage: FC = () => {
 
         }
     }
-    return (<div className='applications-body'>
-        {genPage()}
-    </div>)
+    /* Отрисовка модалки */
+    const [selectedApplication, setSelectedApplications] = useState<Application | null>()
+    const modal = (
+        <ModalRoot activeModal={selectedApplication?.id.toString()} >
+            {selectedApplication ? <ModalCard id={selectedApplication?.id.toString()} onClose={() => setSelectedApplications(null)}
+            >
+                <ApplicationModalPart application={selectedApplication} />
+            </ModalCard> : <div>NoInfo</div>
+            }
+        </ModalRoot>
+    );
+
+    const clickOnCard = (app: Application) => setSelectedApplications(app)
+
+    return (
+        <SplitLayout modal={selectedApplication ? modal : null} className='applications-body'>
+            {genPage()}
+        </SplitLayout>)
 
 };
 
