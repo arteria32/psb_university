@@ -1,4 +1,4 @@
-import { Button, Card, Div, Footer, Spinner, Title, SplitLayout, ModalCard, ModalRoot } from "@vkontakte/vkui";
+import { Button, Card, Div, Footer, Spinner, Title, SplitLayout, ModalCard, ModalRoot, ButtonGroup } from "@vkontakte/vkui";
 import React, { FC, useEffect, useState } from "react";
 import { useGetAllApplicationsQuery } from "../../../../core/store/api/applications-api";
 import { Application } from "../../../../types/application";
@@ -81,6 +81,13 @@ const ApplicationsListPage: FC = () => {
     }
     function genApplicationsList() {
         return (<Card className="applications-list-container">
+            <ButtonGroup mode="vertical" gap="m" align="right">
+                <Button size="l" appearance="accent" onClick={() => setVisModal(true)} >
+                    Создать новую заявку
+                </Button>
+
+            </ButtonGroup>
+
             {appsList.map(item => (
                 <div className="application-item" key={item.id} onClick={() => clickOnCard(item)}>
                     <ApplicationCardComponent application={item} />
@@ -104,21 +111,30 @@ const ApplicationsListPage: FC = () => {
         }
     }
     /* Отрисовка модалки */
-    const [selectedApplication, setSelectedApplications] = useState<Application | null>()
+    const [selectedApplication, setSelectedApplications] = useState<Application | null>();
+    const [visModal, setVisModal] = useState<boolean>()
     const modal = (
-        <ModalRoot activeModal={selectedApplication?.id.toString()} >
-            {selectedApplication ? <ModalCard id={selectedApplication?.id.toString()} onClose={() => setSelectedApplications(null)}
+        <ModalRoot activeModal="appModalCard" >
+            {visModal ? <ModalCard id="appModalCard"
+                onClose={() => {
+                    setSelectedApplications(null);
+                    setVisModal(false)
+                }}
             >
                 <ApplicationModalPart application={selectedApplication} />
             </ModalCard> : <div>NoInfo</div>
             }
-        </ModalRoot>
+        </ModalRoot >
     );
 
-    const clickOnCard = (app: Application) => setSelectedApplications(app)
+    const clickOnCard = (app: Application) => {
+        setSelectedApplications(app)
+        setVisModal(true)
+    }
+
 
     return (
-        <SplitLayout modal={selectedApplication ? modal : null} className='applications-body'>
+        <SplitLayout modal={visModal ? modal : null} className='applications-body'>
             {genPage()}
         </SplitLayout>)
 
