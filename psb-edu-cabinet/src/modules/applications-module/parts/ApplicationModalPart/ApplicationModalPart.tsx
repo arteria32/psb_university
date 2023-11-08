@@ -49,7 +49,7 @@ const ApplicationModalPart: React.FC<{ application?: Application | null }> = ({ 
                 </FormLayoutGroup>
             </FormLayout>
             <ButtonGroup mode="vertical" gap="m" align="right">
-                <Button size="l" appearance="accent"  >
+                <Button size="l" appearance="accent"  disabled={!isNewApplication}  >
                     Отправить на модерацию новую заявку
                 </Button>
             </ButtonGroup>
