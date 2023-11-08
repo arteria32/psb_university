@@ -41,6 +41,17 @@ const router = createBrowserRouter([
                         Component: ListPageApplicationsModule,
                     };
                 },
+            },
+            {
+                path: "schedular",
+                async lazy() {
+                    const { SchedularPageApplicationsModule } = await import(
+                        "./modules/schedular-moudle/schedular-moudle"
+                    );
+                    return {
+                        Component: SchedularPageApplicationsModule,
+                    };
+                },
             }
         ],
     },

@@ -13,4 +13,8 @@ export const NAVIGATION_BAR_CONFIG: NavigationTab[] = [
         id: 1,
         url: "/applications",
         name: "Заявки на обучение"
+    }, {
+        id: 2,
+        url: "/schedular",
+        name: "Расписание"
     }]

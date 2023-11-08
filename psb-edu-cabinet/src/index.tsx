@@ -6,18 +6,21 @@ import App from './App'
 import { store } from './core/store/store'
 import './index.scss'
 
+import dayjs from 'dayjs'
+require('dayjs/locale/ru')
+dayjs.locale('ru')
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
 root.render(
   <React.StrictMode>
-      <Provider store={store}>
-        <ConfigProvider>
-          <AdaptivityProvider>
-            <App />
-          </AdaptivityProvider>
-        </ConfigProvider>
-      </Provider>
+    <Provider store={store}>
+      <ConfigProvider>
+        <AdaptivityProvider>
+          <App />
+        </AdaptivityProvider>
+      </ConfigProvider>
+    </Provider>
   </React.StrictMode>
 )
