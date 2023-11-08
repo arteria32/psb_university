@@ -1,9 +1,18 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import "./SchedularPage.scss";
 
 import { Calendar, Views, dayjsLocalizer } from 'react-big-calendar'
 import dayjs from "dayjs";
+import { Lesson } from "../../../../types/lesson";
+const djLocalizer = dayjsLocalizer(dayjs)
 
+type CalendarEvent = {
+    id: number,
+    title: string,
+    start: Date, end: Date
+}
+
+const parseLessonToEvent = (lesson: Lesson): CalendarEvent => ({ id: lesson.id, title: lesson.name, start: dayjs().toDate(), end: dayjs().add(1, 'day').toDate() })
 
 
 const SchedularPage: FC = () => {
@@ -15,7 +24,36 @@ const SchedularPage: FC = () => {
         }),
         []
     )
-    const djLocalizer = dayjsLocalizer(dayjs)
+    /* 1. Забор уроков c бека  */
+    const [curLessons, setCurLessons] = useState<Lesson[]>([])
+    useEffect(() => {
+        setCurLessons([
+            {
+                "id": 0,
+                "name": "Математика",
+                "description": "string",
+                "urls": [
+                    "string"
+                ],
+                "programModelId": 0
+            }
+        ])
+    }, [])
+
+    /*  */
+    /* 2. Парсим события  */
+    const [curEvents, setCurEvents] = useState<CalendarEvent[]>([])
+    useEffect(() => {
+        console.log("curSel", curLessons)
+        setCurEvents(curLessons.map(parseLessonToEvent))
+    }, [curLessons])
+
+    /* 3. Открываем урок  */
+    const handleSelectEvent = (event: CalendarEvent) => {
+        window.alert(event.title);
+        window.open(`${window.location.origin}/lesson/${event.id}`)
+    }
+
     return (
         <div className='schedular-page-body'>
             <div className="toolbox">
@@ -26,9 +64,10 @@ const SchedularPage: FC = () => {
                     localizer={djLocalizer}
                     defaultDate={defaultDate}
                     defaultView={Views.WEEK}
-                    events={[]}
+                    events={curEvents}
                     selectable
                     scrollToTime={scrollToTime}
+                    onSelectEvent={handleSelectEvent}
                     messages={{
                         week: 'Неделя',
                         work_week: 'Рабочая неделя',

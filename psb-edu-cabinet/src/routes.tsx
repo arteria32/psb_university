@@ -52,6 +52,17 @@ const router = createBrowserRouter([
                         Component: SchedularPageApplicationsModule,
                     };
                 },
+            },
+            {
+                path: "lesson/:lessonId",
+                async lazy() {
+                    const { LessonPageApplicationsModule } = await import(
+                        "./modules/schedular-moudle/schedular-moudle"
+                    );
+                    return {
+                        Component: LessonPageApplicationsModule,
+                    };
+                },
             }
         ],
     },
