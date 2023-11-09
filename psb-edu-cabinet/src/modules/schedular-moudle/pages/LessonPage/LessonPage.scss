@@ -4,6 +4,16 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    
+    align-items: flex-start;
+    column-gap: 16px;
+    row-gap: 16px;
+    .buttons-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        column-gap: 8px;
+        row-gap: 8px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
 }

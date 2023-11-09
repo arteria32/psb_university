@@ -50,7 +50,6 @@ const SchedularPage: FC = () => {
 
     /* 3. Открываем урок  */
     const handleSelectEvent = (event: CalendarEvent) => {
-        window.alert(event.title);
         window.open(`${window.location.origin}/lesson/${event.id}`)
     }
 
