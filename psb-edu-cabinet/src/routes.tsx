@@ -63,6 +63,28 @@ const router = createBrowserRouter([
                         Component: LessonPageApplicationsModule,
                     };
                 },
+            },
+            {
+                path: "tasks",
+                async lazy() {
+                    const { StudentTaskListPageApplicationsModule } = await import(
+                        "./modules/schedular-moudle/schedular-moudle"
+                    );
+                    return {
+                        Component: StudentTaskListPageApplicationsModule,
+                    };
+                },
+            },
+            {
+                path: "task/:taskId",
+                async lazy() {
+                    const { StudentTaskViewerPageApplicationsModule } = await import(
+                        "./modules/schedular-moudle/schedular-moudle"
+                    );
+                    return {
+                        Component: StudentTaskViewerPageApplicationsModule,
+                    };
+                },
             }
         ],
     },
