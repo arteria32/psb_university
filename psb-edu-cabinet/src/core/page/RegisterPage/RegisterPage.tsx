@@ -24,9 +24,9 @@ const RegisterPage: FC = () => {
                 </Title>
 
                 <FormLayout>
-                    <FormItem top="ФИО" htmlFor="pass" className="form" status={name ? 'valid' : 'error'}
+                    <FormItem top="ФИО" htmlFor="name" className="form"
                     >
-                        <Input id="pass" type="password" placeholder="Фамилия Имя Отчество" value={name}
+                        <Input id="name" type="name" placeholder="Фамилия Имя Отчество" value={name}
                             onChange={(event) => setName(event.currentTarget.value)}
 
                         />
@@ -35,7 +35,6 @@ const RegisterPage: FC = () => {
                     <FormItem className="form"
                         htmlFor="email"
                         top="Логин"
-                        status={email ? 'valid' : 'error'}
                         bottomId="email-type"
                     >
                         <Input
@@ -48,7 +47,7 @@ const RegisterPage: FC = () => {
                             onChange={(event) => setEmail(event.currentTarget.value)}
                         />
                     </FormItem>
-                    <FormItem top="Пароль" htmlFor="pass" className="form" status={password ? 'valid' : 'error'}
+                    <FormItem top="Пароль" htmlFor="pass" className="form"
                     >
                         <Input id="pass" type="password" placeholder="Введите пароль" value={password}
                             onChange={(event) => setPassword(event.currentTarget.value)}
@@ -64,7 +63,7 @@ const RegisterPage: FC = () => {
                     disabled={email.length == 0 || password.length == 0}
                     onClick={() => onRegisterClick()}
                 >
-                    Зарегестрироваться
+                    
                 </Button>
             </Div>
         </Card>

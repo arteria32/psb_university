@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import "./LoginPage.scss"
-import { Button, Card, Div, FormItem, FormLayout, Input, Title } from "@vkontakte/vkui"
+import { Button, Card, Div, FormItem, FormLayout, Input, Link, Title } from "@vkontakte/vkui"
 import { UserInfo, useLoginMutation } from "../../store/api/auth-api";
 
 const LoginPage: FC = () => {
@@ -24,7 +24,6 @@ const LoginPage: FC = () => {
                     <FormItem className="form"
                         htmlFor="email"
                         top="Логин"
-                        status={email ? 'valid' : 'error'}
                         bottomId="email-type"
                     >
                         <Input
@@ -53,6 +52,8 @@ const LoginPage: FC = () => {
                 >
                     Войти
                 </Button>
+                <Link href="./auth/register">Перейти к регистрации</Link>
+
             </Div>
         </Card>
     </div>)

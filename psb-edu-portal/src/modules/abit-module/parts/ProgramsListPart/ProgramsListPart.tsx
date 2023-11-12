@@ -21,7 +21,200 @@ const ProgramsListPart: FC = () => {
     const [curProgramsList, setCurProgramsList] = useState<ProgramModel[]>([])
 
     useEffect(() => {
-        setCurProgramsList(programsList || [])
+        setCurProgramsList([
+            {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }, {
+                "id": 1,
+                "name": "Информационная безопасность",
+                "description": "Lorem",
+                "start": "2023-05-11T08:07:16.704Z",
+                "price": 110000,
+                "tags": [],
+                "duration": 10000,
+            }])
     }, [programsList])
     useEffect(() => {
         console.log("curProgramsList", curProgramsList)
@@ -110,7 +303,7 @@ const ProgramsListPart: FC = () => {
 
     }
     function genPage() {
-        if (isSuccessProgramsList) {
+        if (true || isSuccessProgramsList) {
             return genProgramList()
         }
         else if (isErrorProgramsList) {

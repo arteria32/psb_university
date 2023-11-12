@@ -12,7 +12,11 @@ export interface UserFullInfo extends UserInfo {
 }
 export const authApi = createApi({
     reducerPath: 'applicationsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: environment.urlBackend }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: environment.urlBackend,
+        mode:"no-cors"
+    },),
+
     endpoints: (builder) => ({
         login: builder.mutation<null, UserInfo>({
             query: (userInfo: UserInfo) => (
