@@ -85,6 +85,17 @@ const router = createBrowserRouter([
                         Component: StudentTaskViewerPageApplicationsModule,
                     };
                 },
+            },
+            {
+                path: "profile",
+                async lazy() {
+                    const { ProfilePageProfileModule } = await import(
+                        "./modules/profile-module/profile-module"
+                    );
+                    return {
+                        Component: ProfilePageProfileModule,
+                    };
+                },
             }
         ],
     },
