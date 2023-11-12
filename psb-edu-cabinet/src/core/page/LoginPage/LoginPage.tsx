@@ -1,19 +1,36 @@
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import "./LoginPage.scss"
 import { Button, Card, Div, FormItem, FormLayout, Input, Link, Title } from "@vkontakte/vkui"
 import { UserInfo, useLoginMutation } from "../../store/api/auth-api";
+import { useNavigate } from "react-router-dom";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { useDispatch } from "react-redux";
+import { initAuthInfo } from "../../store/slices/auth-slice";
 
 const LoginPage: FC = () => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [login, { isLoading: isLoadingLogin, isSuccess: isSuccessLogin, isError: isErrorLoading, error: errorLogin }] = useLoginMutation();
+    const [login, loginResult] = useLoginMutation();
     function onLoginClick() {
         const body: UserInfo = {
             email, password
         }
         login(body)
     }
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    useEffect(() => {
+        console.log('loginResult', loginResult);
+        if (loginResult.isSuccess) {
+            dispatch(initAuthInfo({
+                name: loginResult?.originalArgs?.email || "-",
+                token: (loginResult?.data as unknown as { token: string }).token || ""
+            }))
+            navigate("/")
+        } else if (loginResult.isError) {
+            alert(((loginResult?.error as FetchBaseQueryError).data as { message: string })["message"])
+        }
+    }, [loginResult])
     return (<div className="login-page-container">
         <Card className="center-message" mode="outline-tint">
             <Div className="login-modal" >
@@ -23,7 +40,7 @@ const LoginPage: FC = () => {
                 <FormLayout>
                     <FormItem className="form"
                         htmlFor="email"
-                        top="Логин"
+                        top="Email"
                         bottomId="email-type"
                     >
                         <Input

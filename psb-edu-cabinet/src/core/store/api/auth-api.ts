@@ -14,7 +14,6 @@ export const authApi = createApi({
     reducerPath: 'applicationsApi',
     baseQuery: fetchBaseQuery({
         baseUrl: environment.urlBackend,
-        mode:"no-cors"
     },),
 
     endpoints: (builder) => ({
@@ -28,7 +27,7 @@ export const authApi = createApi({
             ),
 
         }),
-        register: builder.mutation<null, UserFullInfo>({
+        register: builder.mutation<{ message: string, token: string }, UserFullInfo>({
             query: (userInfo: UserInfo) => (
                 {
                     url: "Auth/register",

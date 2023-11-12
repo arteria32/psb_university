@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { applicationsApi } from './api/applications-api'
 import { programModelsApi } from './api/program-models-api'
+import { authSlice } from './slices/auth-slice'
 export const store = configureStore({
     reducer: {
         [applicationsApi.reducerPath]: applicationsApi.reducer,
-        [programModelsApi.reducerPath]: programModelsApi.reducer
+        [programModelsApi.reducerPath]: programModelsApi.reducer,
+        [authSlice.name]: authSlice.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(applicationsApi.middleware).concat(programModelsApi.middleware)

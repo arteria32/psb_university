@@ -6,6 +6,7 @@ import HeaderPart from './core/parts/HeaderPart/HeaderPart';
 import router from './routes';
 import React from "react"
 function App() {
+
   return (
     <AppRoot>
       <SplitLayout header={<PanelHeader separator={false} />}>

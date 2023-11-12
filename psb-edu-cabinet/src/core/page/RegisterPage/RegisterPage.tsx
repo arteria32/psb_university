@@ -1,7 +1,9 @@
 import { Button, Card, Div, FormItem, FormLayout, Input, Title } from "@vkontakte/vkui";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { UserFullInfo, useRegisterMutation } from "../../store/api/auth-api";
 import "./RegisterPage.scss";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage: FC = () => {
     const [email, setEmail] = React.useState('');
@@ -9,13 +11,22 @@ const RegisterPage: FC = () => {
     const [name, setName] = React.useState('');
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [register, { isLoading: isLoadingLogin, isSuccess: isSuccessLogin, isError: isErrorLoading, error: errorLogin }] = useRegisterMutation();
+    const [register, registerResult] = useRegisterMutation();
     function onRegisterClick() {
         const body: UserFullInfo = {
             email, password, name
         }
         register(body)
     }
+    const navigate = useNavigate()
+    useEffect(() => {
+        console.log("registerResult", registerResult);
+        if (registerResult.isError) {
+            alert(((registerResult?.error as FetchBaseQueryError).data as { errors: string[] })["errors"])
+        }else if (registerResult.isSuccess){
+            navigate("/");
+        }
+    }, [registerResult])
     return (<div className="register-page-container">
         <Card className="center-message" mode="outline-tint">
             <Div className="login-modal" >
@@ -63,7 +74,7 @@ const RegisterPage: FC = () => {
                     disabled={email.length == 0 || password.length == 0}
                     onClick={() => onRegisterClick()}
                 >
-                    
+                    Зарегистрироваться
                 </Button>
             </Div>
         </Card>
