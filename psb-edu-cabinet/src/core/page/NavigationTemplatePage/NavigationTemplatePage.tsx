@@ -5,19 +5,26 @@ import "./NavigationTemplatePage.scss"
 import { NAVIGATION_BAR_CONFIG } from "./navigation-config"
 import { RootState } from "../../store/store"
 import { useSelector } from "react-redux"
+import { useLazyGetUserInfoByIdQuery } from "../../store/api/auth-api"
 const NavigationTemplatePage: FC<{ children: React.ReactNode }> = ({ children }) => {
     /* 0. Проверка на авторизацию  */
     /*     {"email":"Test@tets.ru","password":"Arteria32!","name":"RRRTest"}
      */
-    const isAuth = useSelector((state: RootState) => state.authSlice.isAuthorizarated);
+    const { isAuthorizarated: isAuth, id: userId } = useSelector((state: RootState) => state.authSlice);
     const navigate = useNavigate()
     useEffect(() => {
         console.log("auth", isAuth)
         if (!isAuth) navigate("/auth")
     }, [isAuth])
-
+    useEffect(() => {
+        console.log("userID", userId)
+        if (userId) triggerUserInfo(userId)
+    }, [userId])
     /* 1. Доступная навигация */
-
+    const [triggerUserInfo, resultUserInfo] = useLazyGetUserInfoByIdQuery();
+    useEffect(() => {
+        console.log("resultUserInforesultUserInfo;t", resultUserInfo)
+    }, [resultUserInfo])
     /*  */
     /* 2. Отслиживаем навигацию */
     const [curMatches] = useMatches();

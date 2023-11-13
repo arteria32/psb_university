@@ -2,6 +2,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import environment from '../../../enviroment'
 import { Application } from '../../../types/application'
+import { AdminArea } from '../../../types/admin-area'
+import { RootState } from '../store'
 // Define a service using a base URL and expected endpoints
 export interface UserInfo {
     email: string,
@@ -14,6 +16,16 @@ export const authApi = createApi({
     reducerPath: 'applicationsApi',
     baseQuery: fetchBaseQuery({
         baseUrl: environment.urlBackend,
+        prepareHeaders: (headers, { getState }) => {
+            const token = (getState() as RootState).authSlice.token
+
+            // If we have a token set in state, let's assume that we should be passing it.
+            if (token) {
+                headers.set('authorization', `Bearer ${token}`)
+            }
+
+            return headers
+        },
     },),
 
     endpoints: (builder) => ({
@@ -37,9 +49,18 @@ export const authApi = createApi({
             ),
 
         }),
+        getUserInfoById: builder.query<AdminArea, string>({
+            query: (id:string) => (
+                {
+                    url: `AdminArea/${id}`,
+                    method: "GET"
+                }
+            ),
+
+        }),
     }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useLoginMutation, useRegisterMutation } = authApi
+export const { useLoginMutation, useRegisterMutation, useLazyGetUserInfoByIdQuery } = authApi

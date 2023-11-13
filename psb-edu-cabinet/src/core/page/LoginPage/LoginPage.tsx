@@ -24,7 +24,7 @@ const LoginPage: FC = () => {
         if (loginResult.isSuccess) {
             dispatch(initAuthInfo({
                 name: loginResult?.originalArgs?.email || "-",
-                token: (loginResult?.data as unknown as { token: string }).token || ""
+                token: (loginResult?.data as unknown as { token: { token: string } }).token.token || ""
             }))
             navigate("/")
         } else if (loginResult.isError) {

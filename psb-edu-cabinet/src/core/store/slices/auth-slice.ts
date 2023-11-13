@@ -1,14 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { jwtDecode } from "jwt-decode";
 
 type AuthSlice = {
     isAuthorizarated: boolean,
     name: string,
-    token: string
+    token?: string,
+    id?: string,
+    role?: string
 }
 const INITIAL_STATE_AUTH: AuthSlice = {
     isAuthorizarated: false,
     name: "NoINfo",
-    token: "NoInfo"
 }
 export const authSlice = createSlice({
     name: 'authSlice',
@@ -18,6 +20,9 @@ export const authSlice = createSlice({
             state.isAuthorizarated = true;
             state.token = action.payload.token;
             state.name = action.payload.name
+            const jwtDecodeBody = jwtDecode<{ Id: string, "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": string }>(action.payload.token)
+            state.id = jwtDecodeBody.Id;
+            state.role = jwtDecodeBody["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
         }
     },
 })

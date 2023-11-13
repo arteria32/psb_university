@@ -6,7 +6,6 @@ const ProgramsListPage: FC = () => {
     return (
         <div className='programs-list-page-body'>
             <div className="toolbox">
-                Toolbox
             </div>
             <div className="programs-viewer">
                 <ProgramsListPart />

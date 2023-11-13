@@ -23,6 +23,6 @@ export const NAVIGATION_BAR_CONFIG: NavigationTab[] = [
         name: "Домашния задания"
     }, {
         id: 3,
-        url: "/tasks",
+        url: "/comleted-tasks",
         name: "Успеваемость"
     }]
