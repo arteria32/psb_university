@@ -1,0 +1,48 @@
+.program-info-page-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    column-gap: 16px;
+    row-gap: 16px;
+
+    .center-message {
+        margin: auto;
+    }
+
+    .error-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        column-gap: 8px;
+        row-gap: 8px;
+    }
+
+    .program-info-container {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .bottom-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex: 0 0 fit-content;
+    }
+
+    .title-container {
+        flex: 0 0 fit-content;
+    }
+
+    .description-container {
+        flex: 1 1 fit-content;
+        overflow-y: auto;
+    }
+
+}
